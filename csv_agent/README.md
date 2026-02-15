@@ -32,7 +32,7 @@ csv_agent/
 
 - Python 3.8 o superior
 - pip (gestor de paquetes de Python)
-- Una cuenta en OpenAI con acceso a la API
+- Una cuenta de Google con acceso a la API de Gemini (gratuita)
 
 ### 2. Clonar o Descargar el Proyecto
 
@@ -62,7 +62,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 5. Configurar la API Key de OpenAI
+### 5. Configurar la API Key de Google Gemini
 
 1. Copia el archivo de ejemplo:
    ```bash
@@ -71,16 +71,18 @@ pip install -r requirements.txt
 
 2. Edita el archivo `.env` y añade tu API key:
    ```
-   OPENAI_API_KEY=sk-tu-api-key-aqui
+   GOOGLE_API_KEY=tu-api-key-de-google-aqui
    ```
 
-3. Para obtener una API key:
-   - Ve a https://platform.openai.com/api-keys
-   - Inicia sesión o crea una cuenta
-   - Crea una nueva API key
+3. Para obtener una API key (GRATIS):
+   - Ve a https://aistudio.google.com/app/apikey
+   - Inicia sesión con tu cuenta de Google
+   - Haz clic en "Create API Key"
    - Copia la key y pégala en el archivo `.env`
 
 **IMPORTANTE:** Nunca compartas tu API key ni la subas a repositorios públicos.
+
+**NOTA:** La API de Google Gemini tiene un tier gratuito generoso, perfecto para el workshop.
 
 ## Uso
 
@@ -237,14 +239,15 @@ Framework para construir agentes con grafos de estado:
 
 ## Troubleshooting
 
-### Error: "OPENAI_API_KEY no encontrada"
+### Error: "GOOGLE_API_KEY no encontrada"
 
 **Problema:** No se configuró la API key.
 
 **Solución:**
 1. Crea un archivo `.env` en el directorio del proyecto
-2. Añade: `OPENAI_API_KEY=tu-clave-aqui`
+2. Añade: `GOOGLE_API_KEY=tu-clave-aqui`
 3. Verifica que el archivo `.env` esté en el mismo directorio que los scripts
+4. Obtén tu API key gratuita en: https://aistudio.google.com/app/apikey
 
 ### Error: "ModuleNotFoundError: No module named 'langgraph'"
 
@@ -264,14 +267,15 @@ pip install -r requirements.txt
 python crear_dataset.py
 ```
 
-### Error: "RateLimitError" de OpenAI
+### Error: "RateLimitError" de Google
 
 **Problema:** Has excedido el límite de requests de tu API key.
 
 **Solución:**
 - Espera unos minutos antes de intentar de nuevo
-- Verifica tu plan en OpenAI (https://platform.openai.com/usage)
-- Considera usar `gpt-4o-mini` en lugar de modelos más grandes (ya está configurado)
+- El tier gratuito de Google Gemini es muy generoso (60 requests por minuto)
+- Verifica tu uso en: https://aistudio.google.com/
+- El modelo `gemini-1.5-flash` ya está configurado (rápido y eficiente)
 
 ### Las gráficas no se generan
 
@@ -325,7 +329,8 @@ Ideas para extender el proyecto:
 
 - **Langgraph Documentation:** https://langchain-ai.github.io/langgraph/
 - **LangChain Documentation:** https://python.langchain.com/
-- **OpenAI API Documentation:** https://platform.openai.com/docs
+- **Google Gemini API Documentation:** https://ai.google.dev/docs
+- **Google AI Studio:** https://aistudio.google.com/
 - **Pandas Documentation:** https://pandas.pydata.org/docs/
 - **Matplotlib Gallery:** https://matplotlib.org/stable/gallery/
 

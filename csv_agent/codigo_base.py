@@ -13,7 +13,7 @@ Autor: Workshop AI Agents
 # ============================================
 
 from langchain.agents import create_agent
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.tools import tool
 import pandas as pd
 import matplotlib
@@ -27,11 +27,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Verificar que la API key está configurada
-if not os.getenv("OPENAI_API_KEY"):
+if not os.getenv("GOOGLE_API_KEY"):
     raise ValueError(
-        "❌ Error: OPENAI_API_KEY no encontrada.\n"
+        "❌ Error: GOOGLE_API_KEY no encontrada.\n"
         "Por favor, crea un archivo .env con tu API key:\n"
-        "OPENAI_API_KEY=tu-clave-aqui"
+        "GOOGLE_API_KEY=tu-clave-aqui\n"
+        "Obtén tu API key en: https://aistudio.google.com/app/apikey"
     )
 
 # Crear directorio para guardar las gráficas
@@ -218,7 +219,7 @@ def plot_distribution(filepath: str, column: str) -> str:
 # Crear el agente usando create_agent de Langchain
 # Este agente puede razonar y usar las herramientas de forma autónoma
 agent = create_agent(
-    model=ChatOpenAI(model="gpt-4o-mini", temperature=0),
+    model=ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0),
     tools=[load_and_describe_csv, get_statistics, plot_distribution],
     system_prompt=SYSTEM_PROMPT
 )
