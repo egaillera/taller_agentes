@@ -322,23 +322,43 @@ def run_agent(query: str) -> str:
         step_number = 1
 
         for step in agent.stream({"messages": [("user", query)]}):
-            # Cada step contiene el estado actual del agente
-            if "agent" in step:
-                messages = step["agent"]["messages"]
+            # LangGraph usa "model" o "agent" como clave según la versión
+            agent_key = "model" if "model" in step else "agent" if "agent" in step else None
+
+            if agent_key:
+                messages = step[agent_key]["messages"]
 
                 for message in messages:
-                    # Mostrar el razonamiento del agente
+                    # Extraer contenido de texto (puede ser str o lista de partes)
+                    text_content = ""
                     if hasattr(message, "content") and message.content:
+                        if isinstance(message.content, str):
+                            text_content = message.content
+                        elif isinstance(message.content, list):
+                            # Gemini devuelve una lista de partes
+                            text_content = " ".join(
+                                part.get("text", "") if isinstance(part, dict) else str(part)
+                                for part in message.content
+                            ).strip()
+
+                    # Mostrar el razonamiento del agente
+                    if text_content:
                         print(f"💭 RAZONAMIENTO (Paso {step_number}):")
-                        print(f"   {message.content}")
+                        print(f"   {text_content}")
                         print()
 
                     # Mostrar llamadas a herramientas
-                    if hasattr(message, "tool_calls") and message.tool_calls:
-                        for tool_call in message.tool_calls:
-                            print(f"🔧 USANDO HERRAMIENTA: {tool_call['name']}")
-                            print(f"   Argumentos: {tool_call['args']}")
-                            print()
+                    tool_calls = getattr(message, "tool_calls", None) or []
+                    # Algunos modelos usan additional_kwargs para tool_calls
+                    if not tool_calls and hasattr(message, "additional_kwargs"):
+                        tool_calls = message.additional_kwargs.get("tool_calls", [])
+
+                    for tc in tool_calls:
+                        name = tc.get("name", tc.get("function", {}).get("name", "desconocida"))
+                        args = tc.get("args", tc.get("function", {}).get("arguments", {}))
+                        print(f"🔧 USANDO HERRAMIENTA: {name}")
+                        print(f"   Argumentos: {args}")
+                        print()
 
             # Mostrar resultados de las herramientas
             if "tools" in step:
@@ -357,16 +377,25 @@ def run_agent(query: str) -> str:
             result = step
 
         # Extraer y mostrar la respuesta final
-        if result and "agent" in result:
-            final_messages = result["agent"]["messages"]
+        final_key = "model" if result and "model" in result else "agent" if result and "agent" in result else None
+        if final_key:
+            final_messages = result[final_key]["messages"]
             if final_messages:
-                final_response = final_messages[-1].content
-                print("=" * 80)
-                print("✅ RESPUESTA FINAL:")
-                print(f"   {final_response}")
-                print("=" * 80)
-                print("\n")
-                return final_response
+                raw = final_messages[-1].content
+                if isinstance(raw, list):
+                    final_response = " ".join(
+                        part.get("text", "") if isinstance(part, dict) else str(part)
+                        for part in raw
+                    ).strip()
+                else:
+                    final_response = raw
+                if final_response:
+                    print("=" * 80)
+                    print("✅ RESPUESTA FINAL:")
+                    print(f"   {final_response}")
+                    print("=" * 80)
+                    print("\n")
+                    return final_response
 
         return "No se pudo obtener una respuesta del agente"
 
