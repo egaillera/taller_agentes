@@ -85,7 +85,7 @@ csv_agent/
 ```bash
 # Si usas git
 git clone https://github.com/egaillera/taller_agentes/
-cd csv_agent
+cd taller_agentes/csv_agent
 
 # O simplemente descarga y descomprime el archivo ZIP
 ```
@@ -121,158 +121,7 @@ pip install -r requirements.txt
    ```
 
 
-## Uso
 
-### Paso 1: Generar el Dataset de Ejemplo
-
-Primero, genera el archivo `ventas.csv` con datos de ejemplo:
-
-```bash
-python crear_dataset.py
-```
-
-Este script creará un archivo CSV con 100 filas de datos de ventas ficticias, incluyendo:
-- Productos
-- Precios (distribución normal)
-- Cantidades
-- Categorías (Electrónica, Ropa, Alimentos, Hogar, Deportes)
-- Fechas (100 días consecutivos)
-
-**Salida esperada:**
-```
-🔧 Generando dataset de ventas...
-
-✓ Generados 100 productos
-✓ Generados precios (rango: 11.23 - 89.45)
-✓ Generadas cantidades (rango: 1 - 100)
-✓ Asignadas categorías: Electrónica, Ropa, Alimentos, Hogar, Deportes
-✓ Generadas fechas (2024-01-01 a 2024-04-09)
-
-✅ Dataset creado exitosamente: ventas.csv
-```
-
-### Paso 2: Ejecutar el Código Base (Workshop)
-
-Durante el workshop, trabajarás con `codigo_base.py`:
-
-```bash
-python codigo_base.py
-```
-
-**Nota:** Este archivo tiene las herramientas sin implementar. Los estudiantes las completarán durante el workshop.
-
-### Paso 3: Ejecutar la Solución Completa
-
-Para ver cómo funciona el agente completamente implementado:
-
-```bash
-python solucion_completa.py
-```
-
-El agente ejecutará automáticamente 4 casos de prueba:
-
-1. **Exploración básica**: Dimensiones y columnas del dataset
-2. **Estadísticas**: Media y desviación estándar de precios
-3. **Visualización**: Histograma de la columna 'precio'
-4. **Análisis completo**: Combinación de múltiples herramientas
-
-**Ejemplo de salida:**
-```
-🤖 CSV DATA ANALYST AGENT - DEMO
-================================================================================
-
-📌 TEST 1: Exploración básica del dataset
-================================================================================
-📝 CONSULTA: How many rows and columns does ventas.csv have? What columns does it contain?
-================================================================================
-
-💭 RAZONAMIENTO (Paso 1):
-   I need to load and describe the CSV file to answer this question.
-
-🔧 USANDO HERRAMIENTA: load_and_describe_csv
-   Argumentos: {'filepath': 'ventas.csv'}
-
-📊 RESULTADO DE HERRAMIENTA:
-   📊 INFORMACIÓN DEL DATASET: ventas.csv
-
-   📏 Dimensiones: 100 filas x 5 columnas
-   ...
-
-✅ RESPUESTA FINAL:
-   The ventas.csv file has 100 rows and 5 columns. The columns are: producto, precio, cantidad, categoria, and fecha.
-```
-
-## Flujo del Workshop
-
-### Fase 1: Configuración (10 minutos)
-- Instalar dependencias
-- Configurar API key
-- Generar dataset
-- Explicar la arquitectura del agente
-
-### Fase 2: Teoría (15 minutos)
-- ¿Qué son los agentes de IA?
-- Arquitectura ReAct (Reasoning + Acting)
-- Langgraph y su ciclo de ejecución
-- Cómo funcionan las herramientas (tools)
-
-### Fase 3: Implementación (50 minutos)
-- **Tarea 1** (10 min): Completar el system prompt
-- **Tarea 2** (15 min): Implementar `load_and_describe_csv`
-- **Tarea 3** (15 min): Implementar `get_statistics`
-- **Tarea 4** (10 min): Implementar `plot_distribution`
-
-### Fase 4: Pruebas y Demostración (15 minutos)
-- Ejecutar los casos de prueba
-- Analizar el razonamiento del agente
-- Discutir mejoras posibles
-- Q&A
-
-## Archivos del Proyecto
-
-### `codigo_base.py`
-Plantilla inicial para el workshop. Contiene:
-- Imports y configuración completa
-- System prompt parcial (estudiantes lo completan)
-- Tres herramientas sin implementar (con hints detallados)
-- Agente ya configurado
-- Función `run_agent` que muestra el razonamiento
-- Casos de prueba listos
-
-### `solucion_completa.py`
-Solución completa y funcional. Incluye:
-- System prompt completo
-- Todas las herramientas implementadas con manejo de errores
-- Misma estructura que `codigo_base.py`
-
-### `crear_dataset.py`
-Script para generar datos de ejemplo:
-- 100 filas de datos de ventas
-- Distribución realista de precios
-- Múltiples categorías
-- Fechas secuenciales
-
-## Conceptos Clave
-
-### 1. Agentes ReAct
-El patrón **ReAct** (Reasoning + Acting) permite al agente:
-1. **Razonar** sobre qué hacer
-2. **Actuar** usando herramientas
-3. **Observar** los resultados
-4. Repetir hasta completar la tarea
-
-### 2. Herramientas (Tools)
-Las herramientas son funciones que el agente puede llamar:
-- Decoradas con `@tool`
-- Tienen docstrings descriptivos (el agente los lee)
-- Reciben parámetros tipados
-- Retornan strings con resultados
-
-### 3. Langgraph
-Framework para construir agentes con grafos de estado:
-- `create_react_agent`: Crea un agente ReAct preconfigurado
-- `agent.stream()`: Ejecuta el agente y retorna cada paso
-- Maneja el ciclo razonamiento → acción → observación
 
 ## Troubleshooting
 
@@ -293,15 +142,6 @@ Framework para construir agentes con grafos de estado:
 **Solución:**
 ```bash
 pip install -r requirements.txt
-```
-
-### Error: "FileNotFoundError: ventas.csv"
-
-**Problema:** El dataset no ha sido generado.
-
-**Solución:**
-```bash
-python crear_dataset.py
 ```
 
 ### Error: "RateLimitError" de Google
@@ -371,14 +211,7 @@ Ideas para extender el proyecto:
 - **Pandas Documentation:** https://pandas.pydata.org/docs/
 - **Matplotlib Gallery:** https://matplotlib.org/stable/gallery/
 
-## Licencia
-
-Este proyecto es material educativo para workshops. Libre uso con atribución.
-
-## Contacto
-
-Para preguntas sobre el workshop o el código, contacta con el instructor.
 
 ---
 
-**¡Disfruta del workshop y construye agentes increíbles!** 🤖✨
+
