@@ -2,7 +2,6 @@
 
 Un agente de IA construido con **Langgraph** que puede analizar datasets CSV mediante consultas en lenguaje natural.
 
-Este proyecto es parte de un workshop de 90 minutos sobre agentes de IA para estudiantes de Master en Big Data y Análisis de Datos.
 
 ## Descripción del Proyecto
 
@@ -11,6 +10,53 @@ El agente CSV Data Analyst es capaz de:
 - Calcular estadísticas descriptivas (media, mediana, desviación estándar, etc.)
 - Crear visualizaciones (histogramas) de la distribución de datos
 - Razonar de forma autónoma sobre qué herramientas usar para responder consultas
+
+## 🔑 Guía para Obtener tu API Key de Gemini
+
+**IMPORTANTE:** Antes de empezar con la instalación, necesitas una API key de Google Gemini. Sigue estos pasos utilizando tu cuenta de Google (Gmail):
+
+### Paso 1: Acceder a Google AI Studio
+
+1. Abre tu navegador y dirígete a **[aistudio.google.com](https://aistudio.google.com)**
+
+2. Si no has iniciado sesión:
+   - Introduce tu correo de Google (Gmail)
+   - Introduce tu contraseña
+
+3. **Nota importante:** La primera vez que entres, deberás aceptar los **Términos de Servicio**
+   - Asegúrate de marcar las casillas correspondientes para continuar
+   - Lee los términos y acepta para proceder
+
+### Paso 2: Generar la API Key
+
+Una vez dentro del panel principal de Google AI Studio:
+
+1. En el **menú lateral izquierdo**, busca y haz clic en el botón que dice **"Get API key"**
+   - Tiene un icono de una llave 🔑
+
+2. Se abrirá una ventana central
+   - Haz clic en el **botón azul** que dice **"Create API key in new project"**
+   - Esto creará automáticamente un contenedor en Google Cloud para tu llave
+   - **No necesitas configurar nada manualmente**
+
+3. Espera unos segundos a que se genere el código alfanumérico
+
+### Paso 3: Copiar y Guardar tu API Key
+
+1. Aparecerá una ventana con tu clave (un texto largo con letras y números que comienza con `AIza...`)
+
+2. Haz clic en el botón **"Copy"** para copiar la clave
+
+3. **¡MUY IMPORTANTE!**
+   - Pega esa clave en un bloc de notas o un gestor de contraseñas
+   - **Guárdala de forma segura** - la necesitarás en el paso de configuración
+   - **Nunca compartas esta clave** ni la subas a repositorios públicos
+
+### ✅ Listo para Continuar
+
+Una vez que tengas tu API key copiada y guardada, estás listo para continuar con la instalación del proyecto.
+
+---
 
 ## Estructura del Proyecto
 
@@ -38,7 +84,7 @@ csv_agent/
 
 ```bash
 # Si usas git
-git clone <url-del-repositorio>
+git clone https://github.com/egaillera/taller_agentes/
 cd csv_agent
 
 # O simplemente descarga y descomprime el archivo ZIP
@@ -74,15 +120,6 @@ pip install -r requirements.txt
    GOOGLE_API_KEY=tu-api-key-de-google-aqui
    ```
 
-3. Para obtener una API key (GRATIS):
-   - Ve a https://aistudio.google.com/app/apikey
-   - Inicia sesión con tu cuenta de Google
-   - Haz clic en "Create API Key"
-   - Copia la key y pégala en el archivo `.env`
-
-**IMPORTANTE:** Nunca compartas tu API key ni la subas a repositorios públicos.
-
-**NOTA:** La API de Google Gemini tiene un tier gratuito generoso, perfecto para el workshop.
 
 ## Uso
 
