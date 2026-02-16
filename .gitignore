@@ -150,3 +150,7 @@ cython_debug/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Files with the solution to the problem
+csv_agent/solucion_completa.py
+csv_agent/crear_dataset.py
