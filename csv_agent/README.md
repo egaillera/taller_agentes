@@ -62,14 +62,12 @@ Una vez que tengas tu API key copiada y guardada, estás listo para continuar co
 
 ```
 csv_agent/
-├── .env.example           # Ejemplo de configuración de variables de entorno
-├── requirements.txt       # Dependencias de Python
-├── crear_dataset.py       # Script para generar el dataset de ejemplo
+├── .env.example          # Ejemplo de configuración de variables de entorno
+├── requirements.txt      # Dependencias de Python
 ├── ventas.csv            # Dataset de ejemplo (generado)
 ├── codigo_base.py        # Plantilla inicial (para completar en el workshop)
-├── solucion_completa.py  # Solución completa funcional
 ├── plots/                # Directorio para gráficas (se crea automáticamente)
-└── README.md            # Este archivo
+└── README.md             # Este archivo
 ```
 
 ## Instalación
