@@ -12,6 +12,7 @@ Autor: Workshop AI Agents
 # IMPORTS Y CONFIGURACIÓN INICIAL
 # ============================================
 
+import sys
 from langchain.agents import create_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.tools import tool
@@ -346,7 +347,8 @@ def run_agent(query: str) -> str:
 # CASOS DE PRUEBA
 # ============================================
 
-if __name__ == "__main__":
+def run_demo():
+    """Ejecuta los 4 casos de prueba de demostración."""
     print("\n")
     print("🤖 CSV DATA ANALYST AGENT - DEMO")
     print("=" * 80)
@@ -379,3 +381,37 @@ if __name__ == "__main__":
     print("=" * 80)
     print("✅ DEMO COMPLETADA")
     print("=" * 80)
+
+
+def interactive_mode():
+    """Modo interactivo: el usuario escribe consultas para el agente."""
+    print("\n")
+    print("🤖 CSV DATA ANALYST AGENT - MODO INTERACTIVO")
+    print("=" * 80)
+    print()
+    print("Escribe tu consulta para el agente y presiona ENTER.")
+    print("Para salir, escribe 'salir', 'exit' o deja la línea vacía.\n")
+
+    while True:
+        try:
+            query = input("📝 Tu consulta: ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print()
+            break
+
+        if not query or query.lower() in ("salir", "exit"):
+            break
+
+        run_agent(query)
+        print()
+
+    print("\n" + "=" * 80)
+    print("👋 ¡Hasta luego!")
+    print("=" * 80)
+
+
+if __name__ == "__main__":
+    if "--test" in sys.argv:
+        run_demo()
+    else:
+        interactive_mode()
