@@ -147,7 +147,7 @@ pip install -r requirements.txt
 - Espera unos minutos antes de intentar de nuevo
 - El tier gratuito de Google Gemini es muy generoso (60 requests por minuto)
 - Verifica tu uso en: https://aistudio.google.com/
-- El modelo `gemini-1.5-flash` ya está configurado (rápido y eficiente)
+- El modelo `gemini-2.5-flash` ya está configurado en el código
 
 ### Las gráficas no se generan
 
