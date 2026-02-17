@@ -74,7 +74,7 @@ csv_agent/
 
 ### 1. Requisitos Previos
 
-- Python 3.8 o superior
+- Python 3.8 o superior, pero inferior a 3.14
 - pip (gestor de paquetes de Python)
 - Una cuenta de Google con acceso a la API de Gemini (gratuita)
 
@@ -85,7 +85,6 @@ csv_agent/
 git clone https://github.com/egaillera/taller_agentes/
 cd taller_agentes/csv_agent
 
-# O simplemente descarga y descomprime el archivo ZIP
 ```
 
 ### 3. Crear un Entorno Virtual (Recomendado)
@@ -117,8 +116,6 @@ pip install -r requirements.txt
    ```
    GOOGLE_API_KEY=tu-api-key-de-google-aqui
    ```
-
-
 
 
 ## Troubleshooting
