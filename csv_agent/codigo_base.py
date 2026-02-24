@@ -84,29 +84,7 @@ def load_and_describe_csv(filepath: str) -> str:
         - Primeras filas del dataset
     """
     # TODO: Implementar esta función
-    #
-    # PISTAS:
-    # 1. Usa pd.read_csv(filepath) para cargar el archivo
-    # 2. Obtén las dimensiones con df.shape (retorna tupla: filas, columnas)
-    # 3. Obtén los nombres de columnas con df.columns
-    # 4. Obtén los tipos de datos con df.dtypes
-    # 5. Obtén las primeras filas con df.head(3)
-    # 6. Formatea toda la información en un string claro y legible
-    # 7. Maneja posibles errores (archivo no existe, CSV inválido)
-    #
-    # ESTRUCTURA SUGERIDA:
-    # try:
-    #     df = pd.read_csv(filepath)
-    #     filas, columnas = df.shape
-    #     info = f"Dataset: {filepath}\n"
-    #     info += f"Dimensiones: {filas} filas x {columnas} columnas\n"
-    #     ... (agregar más información)
-    #     return info
-    # except FileNotFoundError:
-    #     return f"Error: El archivo {filepath} no existe"
-    # except Exception as e:
-    #     return f"Error al cargar el archivo: {str(e)}"
-
+   
     pass
 
 
@@ -133,31 +111,7 @@ def get_statistics(filepath: str, column: str) -> str:
     """
     # TODO: Implementar esta función
     #
-    # PISTAS:
-    # 1. Carga el CSV con pd.read_csv(filepath)
-    # 2. Verifica que la columna existe en df.columns
-    # 3. Verifica que la columna es numérica (df[column].dtype)
-    # 4. Usa df[column].describe() para obtener estadísticas
-    # 5. El método describe() retorna: count, mean, std, min, 25%, 50%, 75%, max
-    # 6. Formatea las estadísticas de manera clara y legible
-    # 7. Maneja errores: archivo no existe, columna no existe, columna no numérica
-    #
-    # ESTRUCTURA SUGERIDA:
-    # try:
-    #     df = pd.read_csv(filepath)
-    #     if column not in df.columns:
-    #         return f"Error: La columna '{column}' no existe"
-    #     if not pd.api.types.is_numeric_dtype(df[column]):
-    #         return f"Error: La columna '{column}' no es numérica"
-    #
-    #     stats = df[column].describe()
-    #     result = f"Estadísticas para '{column}':\n"
-    #     result += f"Media: {stats['mean']:.2f}\n"
-    #     ... (agregar más estadísticas)
-    #     return result
-    # except Exception as e:
-    #     return f"Error: {str(e)}"
-
+   
     pass
 
 
@@ -177,38 +131,7 @@ def plot_distribution(filepath: str, column: str) -> str:
         String con mensaje de confirmación y la ruta donde se guardó el gráfico
     """
     # TODO: Implementar esta función
-    #
-    # PISTAS:
-    # 1. Carga el CSV con pd.read_csv(filepath)
-    # 2. Verifica que la columna existe y es numérica
-    # 3. Crea una figura con plt.figure(figsize=(10, 6))
-    # 4. Crea el histograma con plt.hist(df[column], bins=20, edgecolor='black')
-    # 5. Añade título con plt.title(f'Distribución de {column}')
-    # 6. Añade etiquetas con plt.xlabel(column) y plt.ylabel('Frecuencia')
-    # 7. Añade grid con plt.grid(True, alpha=0.3)
-    # 8. Guarda con plt.savefig(PLOTS_DIR / f'{column}_histogram.png')
-    # 9. Cierra la figura con plt.close() para liberar memoria
-    # 10. Retorna mensaje con la ruta del archivo guardado
-    #
-    # ESTRUCTURA SUGERIDA:
-    # try:
-    #     df = pd.read_csv(filepath)
-    #     if column not in df.columns:
-    #         return f"Error: La columna '{column}' no existe"
-    #     if not pd.api.types.is_numeric_dtype(df[column]):
-    #         return f"Error: La columna '{column}' no es numérica"
-    #
-    #     plt.figure(figsize=(10, 6))
-    #     plt.hist(df[column], bins=20, edgecolor='black', alpha=0.7)
-    #     ... (agregar título, labels, etc.)
-    #
-    #     output_path = PLOTS_DIR / f'{column}_histogram.png'
-    #     plt.savefig(output_path)
-    #     plt.close()
-    #
-    #     return f"Histograma guardado en: {output_path}"
-    # except Exception as e:
-    #     return f"Error: {str(e)}"
+    
 
     pass
 
