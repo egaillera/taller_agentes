@@ -159,6 +159,37 @@ print()
 
 def run_agent(query: str) -> str:
     """
+    Ejecuta el agente con una consulta y muestra únicamente la respuesta final.
+
+    Args:
+        query: Pregunta o solicitud del usuario en lenguaje natural
+
+    Returns:
+        Respuesta final del agente
+    """
+    try:
+        result = agent.invoke({"messages": [("user", query)]})
+        messages = result.get("messages", [])
+        if messages:
+            raw = messages[-1].content
+            if isinstance(raw, list):
+                response = " ".join(
+                    part.get("text", "") if isinstance(part, dict) else str(part)
+                    for part in raw
+                ).strip()
+            else:
+                response = raw
+            print(response)
+            return response
+        return "No se pudo obtener una respuesta del agente"
+    except Exception as e:
+        error_msg = f"❌ Error al ejecutar el agente: {str(e)}"
+        print(error_msg)
+        return error_msg
+
+
+def run_agent_verbose(query: str) -> str:
+    """
     Ejecuta el agente con una consulta del usuario y muestra el proceso de razonamiento.
 
     Esta función es pedagógica: muestra cada paso que el agente toma para
@@ -270,7 +301,7 @@ def run_agent(query: str) -> str:
 # CASOS DE PRUEBA
 # ============================================
 
-def run_demo():
+def run_demo(executor=run_agent):
     """Ejecuta los 4 casos de prueba de demostración."""
     print("\n")
     print("🤖 CSV DATA ANALYST AGENT - DEMO")
@@ -283,19 +314,19 @@ def run_demo():
 
     # Test 1: Exploración básica del dataset
     print("📌 TEST 1: Exploración básica del dataset")
-    run_agent("How many rows and columns does ventas.csv have? What columns does it contain?")
+    executor("How many rows and columns does ventas.csv have? What columns does it contain?")
 
     # Test 2: Estadísticas
     print("📌 TEST 2: Cálculo de estadísticas")
-    run_agent("What is the average price and standard deviation in ventas.csv?")
+    executor("What is the average price and standard deviation in ventas.csv?")
 
     # Test 3: Visualización
     print("📌 TEST 3: Creación de visualización")
-    run_agent("Create a histogram of the 'precio' column from ventas.csv")
+    executor("Create a histogram of the 'precio' column from ventas.csv")
 
     # Test 4: Consulta compleja que requiere múltiples herramientas
     print("📌 TEST 4: Análisis completo (múltiples herramientas)")
-    run_agent(
+    executor(
         "Analyze ventas.csv completely: tell me about the dataset structure, "
         "calculate price statistics, and create a distribution plot"
     )
@@ -306,7 +337,7 @@ def run_demo():
     print("=" * 80)
 
 
-def interactive_mode():
+def interactive_mode(executor=run_agent):
     """Modo interactivo: el usuario escribe consultas para el agente."""
     print("\n")
     print("🤖 CSV DATA ANALYST AGENT - MODO INTERACTIVO")
@@ -325,7 +356,7 @@ def interactive_mode():
         if not query or query.lower() in ("salir", "exit"):
             break
 
-        run_agent(query)
+        executor(query)
         print()
 
     print("\n" + "=" * 80)
@@ -334,7 +365,8 @@ def interactive_mode():
 
 
 if __name__ == "__main__":
+    executor = run_agent_verbose if "--verbose" in sys.argv else run_agent
     if "--test" in sys.argv:
-        run_demo()
+        run_demo(executor)
     else:
-        interactive_mode()
+        interactive_mode(executor)
