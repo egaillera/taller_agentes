@@ -12,6 +12,8 @@ El agente CSV Data Analyst es capaz de:
 - Crear visualizaciones (histogramas) de la distribución de datos
 - Razonar de forma autónoma sobre qué herramientas usar para responder consultas
 
+A continuación vienen descrita las tareas de configuración previas al taller.
+
 ## 🔑 Guía para Obtener tu API Key de Gemini
 
 **IMPORTANTE:** Antes de empezar con la instalación, necesitas una API key de Google Gemini. Sigue estos pasos utilizando tu cuenta de Google (Gmail):
@@ -166,7 +168,6 @@ pip install -r requirements.txt
 **Solución:**
 - Este es el comportamiento esperado - las herramientas tienen `pass`
 - Los estudiantes deben implementarlas durante el workshop
-- Para ver la versión funcional, usa `solucion_completa.py`
 
 ## Extensiones Posibles
 
