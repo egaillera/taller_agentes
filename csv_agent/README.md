@@ -1,7 +1,8 @@
 # CSV Data Analyst Agent - Workshop
 
-Un agente de IA construido con **Langgraph** que puede analizar datasets CSV mediante consultas en lenguaje natural.
+Un agente de IA construido con **Langgraph/Langchain** que puede analizar datasets CSV mediante consultas en lenguaje natural.
 
+Taller práctico donde los alumnos aprenderán qué son los agentes de IA, cómo funcionan y cómo construir uno desde cero siguiendo una implementación guiada en directo. Desarrollaremos paso a paso un agente analista de datos que entiende lenguaje natural, razona sobre qué acciones tomar y utiliza herramientas (Python/pandas/matplotlib) para responder automáticamente a consultas sobre datasets. Los alumnos implementarán su propio agente en paralelo, aprendiendo a diseñar system prompts y a integrar herramientas personalizadas.
 
 ## Descripción del Proyecto
 
@@ -23,7 +24,7 @@ El agente CSV Data Analyst es capaz de:
    - Introduce tu correo de Google (Gmail)
    - Introduce tu contraseña
 
-3. **Nota importante:** La primera vez que entres, deberás aceptar los **Términos de Servicio**
+4. **Nota importante:** La primera vez que entres, deberás aceptar los **Términos de Servicio**
    - Asegúrate de marcar las casillas correspondientes para continuar
    - Lee los términos y acepta para proceder
 
