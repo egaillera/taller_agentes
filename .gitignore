@@ -154,3 +154,6 @@ Thumbs.db
 # Files with the solution to the problem
 csv_agent/solucion_completa.py
 csv_agent/crear_dataset.py
+
+# Plots
+csv_agent/plots/*.png
